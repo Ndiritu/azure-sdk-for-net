@@ -9,6 +9,8 @@
     <TargetFrameworks>$(RequiredTargetFrameworks)</TargetFrameworks>
     <NoWarn>$(NoWarn);3021;AZC0011</NoWarn>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NuGetAuditLevel>high</NuGetAuditLevel>
+    <WarningsNotAsErrors>NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
   </PropertyGroup>
   <!--Conditionally define the PREVIEW_FEATURE_FLAG constant if the version is pre-release-->
   <Choose>
