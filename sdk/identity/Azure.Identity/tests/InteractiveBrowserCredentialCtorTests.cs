@@ -39,6 +39,11 @@ namespace Azure.Identity.Tests
                 TokenCachePersistenceOptions = new TokenCachePersistenceOptions(),
                 AuthenticationRecord = new AuthenticationRecord(),
                 RedirectUri = new Uri("https://localhost:8080"),
+                ExtraQueryParameters = new Dictionary<string, string>()
+                {
+                    { "key1", "value1" },
+                    { "key2", "value2" }
+                }
             };
 
             credential = new InteractiveBrowserCredential(options);
@@ -115,6 +120,7 @@ namespace Azure.Identity.Tests
             Assert.AreEqual(options.TenantId, credential.Client.TenantId);
             Assert.AreEqual(options.DisableAutomaticAuthentication, credential.DisableAutomaticAuthentication);
             Assert.AreEqual(options.AuthenticationRecord, credential.Record);
+            Assert.AreEqual(options.ExtraQueryParameters, credential.Client.ExtraQueryParameters);
 
             if (options.RedirectUri != null)
             {

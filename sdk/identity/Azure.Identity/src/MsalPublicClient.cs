@@ -46,7 +46,8 @@ namespace Azure.Identity
                 .Create(ClientId)
                 .WithAuthority(authorityUri)
                 .WithHttpClientFactory(new HttpPipelineClientFactory(Pipeline.HttpPipeline))
-                .WithLogging(LogMsal, enablePiiLogging: IsSupportLoggingEnabled);
+                .WithLogging(LogMsal, enablePiiLogging: IsSupportLoggingEnabled)
+                .WithExtraQueryParameters(ExtraQueryParameters);
 
             if (!string.IsNullOrEmpty(RedirectUrl))
             {

@@ -32,6 +32,11 @@ namespace Azure.Identity
         }
 
         /// <summary>
+        /// Extra Query Parameters for the query string in the HTTP authentication request
+        /// </summary>
+        public IDictionary<string, string> ExtraQueryParameters { get; set; }
+
+        /// <summary>
         /// Gets or sets value indicating if ETW logging that contains potentially sensitive content should be logged.
         /// Setting this property to true will not disable redaction of <see cref="Request"/> Content. To enable logging of sensitive <see cref="Request.Content"/>
         /// the <see cref="DiagnosticsOptions.IsLoggingContentEnabled"/> property must be set to <c>true</c>.

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Azure.Core;
@@ -23,6 +24,7 @@ namespace Azure.Identity
         internal string TenantId { get; }
         internal string ClientId { get; }
         internal Uri AuthorityHost { get; }
+        internal IDictionary<string, string> ExtraQueryParameters { get; }
 
         /// <summary>
         /// For mocking purposes only.
@@ -50,6 +52,7 @@ namespace Azure.Identity
             ClientId = clientId;
             _clientAsyncLock = new AsyncLockWithValue<(TClient Client, TokenCache Cache)>();
             _clientWithCaeAsyncLock = new AsyncLockWithValue<(TClient Client, TokenCache Cache)>();
+            ExtraQueryParameters = options?.ExtraQueryParameters;
         }
 
         protected abstract ValueTask<TClient> CreateClientAsync(bool enableCae, bool async, CancellationToken cancellationToken);
