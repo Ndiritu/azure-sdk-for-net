@@ -147,7 +147,7 @@ namespace Azure.Identity
 
             if (ExtraQueryParameters != null)
             {
-                builder.WithExtraQueryParameters(ExtraQueryParameters);
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
             }
 
             return await builder
@@ -223,7 +223,7 @@ namespace Azure.Identity
 
             if (ExtraQueryParameters != null)
             {
-                builder.WithExtraQueryParameters(ExtraQueryParameters);
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
             }
 
             return await builder.ExecuteAsync(async, cancellationToken)
@@ -349,7 +349,7 @@ namespace Azure.Identity
 
             if (ExtraQueryParameters != null)
             {
-                builder.WithExtraQueryParameters(ExtraQueryParameters);
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
             }
 
             return await builder
@@ -385,7 +385,7 @@ namespace Azure.Identity
 
             if (ExtraQueryParameters != null)
             {
-                builder.WithExtraQueryParameters(ExtraQueryParameters);
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
             }
 
             return await builder.ExecuteAsync(async, cancellationToken)
@@ -411,7 +411,7 @@ namespace Azure.Identity
 
             if (ExtraQueryParameters != null)
             {
-                builder.WithExtraQueryParameters(ExtraQueryParameters);
+                builder.WithExtraQueryParameters(new Dictionary<String, String>(ExtraQueryParameters));
             }
 
             return await builder.ExecuteAsync(async, cancellationToken)
@@ -446,7 +446,7 @@ namespace Azure.Identity
 
             if (ExtraQueryParameters != null)
             {
-                builder.WithExtraQueryParameters(ExtraQueryParameters);
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
             }
 
             return await builder.ExecuteAsync(async, cancellationToken)
