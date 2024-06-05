@@ -145,6 +145,11 @@ namespace Azure.Identity
             }
 #endif
 
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(ExtraQueryParameters);
+            }
+
             return await builder
                 .ExecuteAsync(async, cancellationToken)
                 .ConfigureAwait(false);
@@ -215,6 +220,11 @@ namespace Azure.Identity
                 builder.WithProofOfPossession(popTokenRequestContext.Value.ProofOfPossessionNonce, popTokenRequestContext.Value.HttpMethod, popTokenRequestContext.Value.Uri);
             }
 #endif
+
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(ExtraQueryParameters);
+            }
 
             return await builder.ExecuteAsync(async, cancellationToken)
                            .ConfigureAwait(false);
@@ -336,6 +346,12 @@ namespace Azure.Identity
                 builder.WithProofOfPossession(popTokenRequestContext.Value.ProofOfPossessionNonce, popTokenRequestContext.Value.HttpMethod, popTokenRequestContext.Value.Uri);
             }
 #endif
+
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(ExtraQueryParameters);
+            }
+
             return await builder
                 .ExecuteAsync(async, cancellationToken)
                 .ConfigureAwait(false);
@@ -366,6 +382,12 @@ namespace Azure.Identity
                 };
                 builder.WithTenantIdFromAuthority(uriBuilder.Uri);
             }
+
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(ExtraQueryParameters);
+            }
+
             return await builder.ExecuteAsync(async, cancellationToken)
                 .ConfigureAwait(false);
         }
@@ -385,6 +407,11 @@ namespace Azure.Identity
             if (!string.IsNullOrEmpty(claims))
             {
                 builder.WithClaims(claims);
+            }
+
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(ExtraQueryParameters);
             }
 
             return await builder.ExecuteAsync(async, cancellationToken)
@@ -415,6 +442,11 @@ namespace Azure.Identity
                     Path = tenant
                 };
                 builder.WithTenantIdFromAuthority(uriBuilder.Uri);
+            }
+
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(ExtraQueryParameters);
             }
 
             return await builder.ExecuteAsync(async, cancellationToken)
