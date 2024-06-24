@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Identity.Client;
 using Microsoft.Identity.Client.Extensibility;
+using System.Collections.Generic;
 
 namespace Azure.Identity
 {
@@ -73,7 +74,8 @@ namespace Azure.Identity
 
             ConfidentialClientApplicationBuilder confClientBuilder = ConfidentialClientApplicationBuilder.Create(ClientId)
                 .WithHttpClientFactory(new HttpPipelineClientFactory(Pipeline.HttpPipeline))
-                .WithLogging(LogMsal, enablePiiLogging: IsSupportLoggingEnabled);
+                .WithLogging(LogMsal, enablePiiLogging: IsSupportLoggingEnabled)
+                .WithExtraQueryParameters(ExtraQueryParameters);
 
             // Special case for using appTokenProviderCallback, authority validation and instance metadata discovery should be disabled since we're not calling the STS
             // The authority matches the one configured in the CredentialOptions.
@@ -179,6 +181,10 @@ namespace Azure.Identity
             {
                 builder.WithClaims(claims);
             }
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
+            }
             return await builder
                 .ExecuteAsync(async, cancellationToken)
                 .ConfigureAwait(false);
@@ -223,6 +229,10 @@ namespace Azure.Identity
             if (string.IsNullOrEmpty(claims))
             {
                 builder.WithClaims(claims);
+            }
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
             }
             return await builder
                 .ExecuteAsync(async, cancellationToken)
@@ -270,6 +280,10 @@ namespace Azure.Identity
             {
                 builder.WithClaims(claims);
             }
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
+            }
             return await builder
                 .ExecuteAsync(async, cancellationToken)
                 .ConfigureAwait(false);
@@ -311,6 +325,10 @@ namespace Azure.Identity
                     Path = tenantId
                 };
                 builder.WithTenantIdFromAuthority(uriBuilder.Uri);
+            }
+            if (ExtraQueryParameters != null)
+            {
+                builder.WithExtraQueryParameters(new Dictionary<string, string>(ExtraQueryParameters));
             }
             return await builder
                 .ExecuteAsync(async, cancellationToken)
